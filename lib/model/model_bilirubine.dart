@@ -1,6 +1,6 @@
 class Bilirubine{
   //les colones de table calcul
-//m
+//mx
   int _id_bil;
 
   String _inf_60;

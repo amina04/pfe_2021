@@ -14,7 +14,7 @@ class Dbpfe {
   static final Dbpfe _instance = new Dbpfe.internal();
 
   factory Dbpfe() => _instance;
-  static Dbpfe _db;
+  static Database _db;
 //la declaration des attributs des tableaux pour eviter de tamber en erreur d'ortographe
 //tableau medicament=============================================
   final String tableMed = 'tableMedicament';

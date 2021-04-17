@@ -15,19 +15,12 @@ class Start extends StatelessWidget {
           Expanded(
             child: Container(
               child: Image(
-                image: AssetImage('images/backgr-01.png'),
+                image: AssetImage('images/bg1-01.png'),
               ),
             ),
             flex: 3,
           ),
-          Expanded(
-            flex: 2,
-            child: Container(
-              child: Image(
-                image: AssetImage('images/log-01.png'),
-              ),
-            ),
-          ),
+
 
           Expanded(
             child: Text(

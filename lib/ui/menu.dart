@@ -30,7 +30,7 @@ class Menu extends StatelessWidget {
           children: [
             Stack(
         children: [ Container(width: size.width,height: size.width/1.2,
-              decoration: BoxDecoration(image:DecorationImage(image: AssetImage("assest/courses.gif"),fit: BoxFit.cover,),
+              decoration: BoxDecoration(image:DecorationImage(image: AssetImage("images/bg2-01.png"),fit: BoxFit.cover,),
                   borderRadius: BorderRadius.only(bottomRight: Radius.circular(60) ,bottomLeft: Radius.circular(60) ,
                   ),boxShadow: [BoxShadow(
                     offset: Offset(1,0),
@@ -79,7 +79,7 @@ Column(
         children: <Widget>[
           Expanded(
             flex: 2,
-            child: Image.asset('images.png'),
+            child: Image.asset('images/add_med_icon-01.png'),
           ),
           SizedBox(height: 10.0),
           Expanded(
@@ -117,7 +117,7 @@ Column(
             children: <Widget>[
               Expanded(
                 flex: 2,
-                child: Image.asset('images.png'),
+                child: Image.asset('images/poso_icon-01.png'),
               ),
               SizedBox(height: 10.0),
               Expanded(
