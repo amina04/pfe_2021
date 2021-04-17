@@ -3,24 +3,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pfe_2021/ui/adopy_poso.dart';
 import 'package:pfe_2021/ui/list_med.dart';
+import 'package:pfe_2021/widget_specifique/button_menu.dart';
 
 class Menu extends StatelessWidget {
-  static String id = 'manu';
+  static String id = 'menu';
   @override
   Widget build(BuildContext context) {
     Size size=MediaQuery.of(context).size;
 
-    const colorizeColors = [
-      Colors.deepOrange,
-      Colors.orangeAccent,
-      Colors.yellow,
-      Colors.lightGreenAccent,
-    ];
 
-    const colorizeTextStyle = TextStyle(
-        fontSize:50,
-
-    );
     return SafeArea(
       child: Scaffold(
 
@@ -32,118 +23,48 @@ class Menu extends StatelessWidget {
         children: [ Container(width: size.width,height: size.width/1.2,
               decoration: BoxDecoration(image:DecorationImage(image: AssetImage("images/bg2-01.png"),fit: BoxFit.cover,),
                   borderRadius: BorderRadius.only(bottomRight: Radius.circular(60) ,bottomLeft: Radius.circular(60) ,
-                  ),boxShadow: [BoxShadow(
-                    offset: Offset(1,0),
-                    color: Colors.grey,blurRadius: 14,)]),),
+                  ),),),
 
+]),
 
-            SizedBox(height: size.width/7,),
-            Center(
-
-              child: AnimatedTextKit(
-                animatedTexts: [
-                  ColorizeAnimatedText(
-                    'Bienvenu',
-                    textStyle: colorizeTextStyle,
-                    colors: colorizeColors,
-                  ),
-
-                ],
-                isRepeatingAnimation: true,
-                onTap: () {
-                  print("Tap Event");
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal: 60, vertical: 0),
+              child: button_home(
+                //une fonction ndiro fiha win 7abin nro7o
+                ontap: () {
+                  Navigator.pushNamed(context, List_med.id);
                 },
+
+                nom_image: 'images/add_med_icon-01.png',
+                 label: 'Liste des médicaments'
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                  horizontal:60, vertical: 0),
+              child: button_home(
+                //une fonction ndiro fiha win 7abin nro7o
+                  ontap: () {
+                    Navigator.pushNamed(context, adopt_poso.id);
+                  },
+
+                  nom_image: 'images/poso_icon-01.png',
+                  label: 'Adoptation posologique'
               ),
             ),
 
-Column(
-  children: [
-  GestureDetector(
-  //la methode onTap sert a fait action listener
-  onTap: (){
-    Navigator.pushNamed(context, List_med.id);
-      },
-  child: Padding(
-    padding: EdgeInsets.all(9.0),
-    //je fais card au lieu container car il a une shadow
-    child: Card(
-      elevation: 10.0,
-      margin: EdgeInsets.all(2.0),
-      //pour radius
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(18.0),
-      ),
 
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Expanded(
-            flex: 2,
-            child: Image.asset('images/add_med_icon-01.png'),
-          ),
-          SizedBox(height: 10.0),
-          Expanded(
-            flex: 1,
-            child: Text(
-              'Liste des Medicaments',
 
-              textAlign: TextAlign.center,
-            ),
-          )
-        ],
-      ),
-    ),
-  ),
-),
 
-    GestureDetector(
-      //la methode onTap sert a fait action listener
-      onTap: (){
-        Navigator.pushNamed(context, adopt_poso.id);
-      },
-      child: Padding(
-        padding: EdgeInsets.all(9.0),
-        //je fais card au lieu container car il a une shadow
-        child: Card(
-          elevation: 10.0,
-          margin: EdgeInsets.all(2.0),
-          //pour radius
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(18.0),
-          ),
-
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Expanded(
-                flex: 2,
-                child: Image.asset('images/poso_icon-01.png'),
-              ),
-              SizedBox(height: 10.0),
-              Expanded(
-                flex: 1,
-                child: Text(
-                  'Adoptation posologique',
-
-                  textAlign: TextAlign.center,
-                ),
-              )
             ],
           ),
         ),
-      ),
-    ),
-  ],
-)
-//cm
-          ],
-        ),
 
 
 
-      ],
-      ),
-    ),
+
+
     );
 
   }
