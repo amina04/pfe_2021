@@ -7,6 +7,7 @@ class Start extends StatelessWidget {
   static String id = 'start_screen';
   @override
   Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -27,7 +28,7 @@ class Start extends StatelessWidget {
               'Bienvenu a notre application mobile',
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 16,
+                fontSize: size.height/42,
 
                 color: Colors.blue.shade800,
                 letterSpacing: 2,
@@ -36,6 +37,7 @@ class Start extends StatelessWidget {
             ),
           ),
           Expanded(
+            flex: 1,
             child: Container(
               height: 30.0,
               margin: EdgeInsets.only(bottom: 30.0),
@@ -49,14 +51,11 @@ class Start extends StatelessWidget {
                     borderRadius: BorderRadius.circular(80.0)),
                 child: Ink(
                   decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [Colors.orange, Colors.yellow],
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                      ),
+                    color: Colors.pink,
+
                       borderRadius: BorderRadius.circular(70.0)),
                   child: Container(
-                    constraints: BoxConstraints(maxWidth: 200, minHeight: 30.0),
+                    constraints: BoxConstraints(maxWidth: size.width/2, minHeight: size.height/40),
                     alignment: Alignment.center,
                     child: Text(
                       "Commencer",

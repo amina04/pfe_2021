@@ -32,14 +32,26 @@ class _adopt_posoState extends State<adopt_poso> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.pink,
+          backgroundColor: Colors.blue,
           title: Text(
               'Adoptation posologique'
           ),
         ),
-        body:Column(
+        body:ListView(
          children: [
+
+           Padding(
+             padding: const EdgeInsets.all(25.0),
+             child: TextField(
+               decoration: InputDecoration(
+                 labelText: 'Poids',
+//O
+
+               ),),
+           ),
 Padding(padding:const EdgeInsets.all(25.0),
+
+
     child:FutureBuilder(
         future: dbmanager.getAllMed(),
     builder: (context, snapshot) {
@@ -54,6 +66,7 @@ Padding(padding:const EdgeInsets.all(25.0),
     print(' selected item $selected_item');
 
     });});}})),
+
            Padding(
              padding: const EdgeInsets.all(25.0),
              child: TextField(
