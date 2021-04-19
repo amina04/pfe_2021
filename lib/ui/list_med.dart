@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pfe_2021/model/database.dart';
+import 'package:pfe_2021/model/model_medicament.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../main.dart';
@@ -75,7 +76,7 @@ class _List_medState extends State<List_med> {
         future: dbmanager.getAllMed(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            join_med = snapshot.data;
+            meds = snapshot.data;
             return _buildlistview();
           }
           return new CircularProgressIndicator();
@@ -98,15 +99,15 @@ class _List_medState extends State<List_med> {
   //la methode buildlist view
   ListView _buildlistview() {
     return ListView.builder(
-        itemCount: join_med == null ? 0 : join_med.length,
+        itemCount: meds == null ? 0 : meds.length,
         itemBuilder: (BuildContext context, int position) {
           return Card(
             child: ListTile(
-          //   title: Text(
-              //  'médicament : ${join_med.fromMap(join_med[position]).nom}',
+             title: Text(
+               'médicament : ${Medicament.fromMap(meds[position]).nom_med}',
 
-          //    ),
-              //un sous titre
+              ),
+
 
 
             ),

@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pfe_2021/controller/add_med_controller.dart';
 import 'package:pfe_2021/model/database.dart';
+import 'package:pfe_2021/model/model_bilirubine.dart';
 import 'package:pfe_2021/model/model_clairance.dart';
 import 'package:pfe_2021/model/model_medicament.dart';
+import 'package:pfe_2021/model/model_tgo_tgp.dart';
 class Add_med extends StatelessWidget {
   static String id = 'addMed';
   var dbmanager = new Dbpfe();
@@ -11,6 +13,7 @@ class Add_med extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size=MediaQuery.of(context).size;
     bool insert_before=false;
+    int id_med;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue,
@@ -66,18 +69,19 @@ class Add_med extends StatelessWidget {
               ),
               FloatingActionButton(
                 onPressed: ()async{
+
                   //je fais ce texte pour insire le nom de med 1 seule fois car ici je fais pls buton pour insiréé chaque bilan seule
-                  if(insert_before=false){
+                  if(insert_before==false){
                     // medicament le nom n'est pas  insiréé
-                    int res = await dbmanager.insertMedicament(new Medicament(
+                    id_med = await dbmanager.insertMedicament(new Medicament(
                       nom_med_ctrl.text,
                     ));
-                    print("id medicament $res");
+                    print("id medicament $id_med");
                     insert_before =true;
                   }
                   //insirérer clairance
                   await dbmanager.insertClairance(new Clairance(
-                    clr_inf30_ctrl.text,
+                    clr_inf30_ctrl.text,clr_sup60_ctrl.text,clr_entre_30_60_ctrl.text,id_med
                   ));
 
                 },
@@ -93,6 +97,7 @@ class Add_med extends StatelessWidget {
 
             ),
           ),
+
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
@@ -119,7 +124,7 @@ class Add_med extends StatelessWidget {
                 ),
                 FloatingActionButton(
                   onPressed: ()async{
-                    if(insert_before=false){
+                    if(insert_before==false){
                       // medicament le nom n'est pas  insiréé
                       int res = await dbmanager.insertMedicament(new Medicament(
                           nom_med_ctrl.text,
@@ -128,11 +133,10 @@ class Add_med extends StatelessWidget {
                       insert_before =true;
                     }
 
-                     await dbmanager.insertMedicament(new Medicament(
-                        nom_med_ctrl.text,
-                        int.parse(qte_disponible_ctrl.text),
-                        double.parse(volum_flcn_ctrl.text)));
-                    print("id medicament $res");
+
+                    await dbmanager.insertBilirubine(new Bilirubine(
+                        bil_inf60_ctrl.text,bil_sup60_ctrl.text,id_med
+                    ));
 
                   },
                   child: new Icon(
@@ -172,7 +176,7 @@ class Add_med extends StatelessWidget {
                 ),
                 FloatingActionButton(
                   onPressed: ()async{
-                    if(insert_before=false){
+                    if(insert_before==false){
                       // medicament le nom n'est pas  insiréé
                       int res = await dbmanager.insertMedicament(new Medicament(
                         nom_med_ctrl.text,
@@ -180,7 +184,9 @@ class Add_med extends StatelessWidget {
                       print("id medicament $res");
                       insert_before =true;
                     }
-
+                    await dbmanager.insertTgo_tgpe(new Tgo_tgp(
+                        tgo_inf55_ctrl.text,tgo_sup55_ctrl.text,id_med
+                    ));
                   },
                   child: new Icon(
                     Icons.check,

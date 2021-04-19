@@ -9,7 +9,7 @@ class Clairance{
   int _fk_med_id;
   //un constructeur pour remplir le table
   Clairance(
-  this._id_clr,
+
 
       this._inf_30,
       this._sup_60,

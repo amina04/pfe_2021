@@ -9,7 +9,6 @@ class Bilirubine{
   int _fk_med_id;
   //un constructeur pour remplir le table
   Bilirubine(
-      this._id_bil,
 
       this._inf_60,
       this._sup_60,

@@ -9,7 +9,7 @@ class Tgo_tgp{
   int _fk_med_id;
   //un constructeur pour remplir le table
   Tgo_tgp(
-      this._id_tgo,
+
 
       this._inf_55,
       this._sup_55,

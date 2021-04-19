@@ -69,15 +69,15 @@ class Dbpfe {
 
     //table details clairance
     await db.execute(
-      "CREATE TABLE $tableclr($columnId_clr INTEGER,$columninf_30 TEXT,$columnsup_60_clr TEXT,$columnentre_30_60 TEXT,$FKmedId INTEGER, FOREIGN KEY($FKmedId ) REFERENCES $tableMed($columnId_med) ON DELETE CASCADE)",
+      "CREATE TABLE $tableclr($columnId_clr INTEGER PRIMARY KEY,$columninf_30 TEXT,$columnsup_60_clr TEXT,$columnentre_30_60 TEXT,$FKmedId INTEGER, FOREIGN KEY($FKmedId ) REFERENCES $tableMed($columnId_med) ON DELETE CASCADE)",
     );
     //table details bilirubine
     await db.execute(
-      "CREATE TABLE $tableBili($columnId_Bil INTEGER,$columninf_60 TEXT,$columnsup_60 TEXT,$FKmedId INTEGER, FOREIGN KEY($FKmedId ) REFERENCES $tableMed($columnId_med) ON DELETE CASCADE)",
+      "CREATE TABLE $tableBili($columnId_Bil INTEGER PRIMARY KEY,$columninf_60 TEXT,$columnsup_60 TEXT,$FKmedId INTEGER, FOREIGN KEY($FKmedId ) REFERENCES $tableMed($columnId_med) ON DELETE CASCADE)",
     );
     //table details tgo_tgp
     await db.execute(
-      "CREATE TABLE $tableTgoTgp($columnId_tgo INTEGER,$columninf_55 TEXT,$columnsup_55 TEXT,$FKmedId INTEGER, FOREIGN KEY($FKmedId ) REFERENCES $tableMed($columnId_med) ON DELETE CASCADE)",
+      "CREATE TABLE $tableTgoTgp($columnId_tgo INTEGER PRIMARY KEY,$columninf_55 TEXT,$columnsup_55 TEXT,$FKmedId INTEGER, FOREIGN KEY($FKmedId ) REFERENCES $tableMed($columnId_med) ON DELETE CASCADE)",
     );
 }
   //==============================CRUD MEDICAMENT1 ================================================================

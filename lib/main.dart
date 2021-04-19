@@ -9,6 +9,7 @@ import 'model/model_medicament.dart';
 Medicament med_search;
 List join_med;
 String selected_item = null;
+//liste qui va contenir la liste des medicament
 List meds;
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
