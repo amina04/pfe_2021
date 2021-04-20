@@ -67,7 +67,16 @@ class Add_med extends StatelessWidget {
               SizedBox(
                 height: size.height/20,
               ),
-              FloatingActionButton(
+            //  FloatingActionButton(
+                RaisedButton(
+                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15.0),
+                  color: Colors.lightBlueAccent,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Text(
+                    "sauvegarder",
+
+                  ),
                 onPressed: ()async{
 
                   //je fais ce texte pour insire le nom de med 1 seule fois car ici je fais pls buton pour insiréé chaque bilan seule
@@ -80,18 +89,18 @@ class Add_med extends StatelessWidget {
                     insert_before =true;
                   }
                   //insirérer clairance
-                  await dbmanager.insertClairance(new Clairance(
+                int id_clr=  await dbmanager.insertClairance(new Clairance(
                     clr_inf30_ctrl.text,clr_sup60_ctrl.text,clr_entre_30_60_ctrl.text,id_med
                   ));
-
+                  print("clirance $id_clr et id med $id_med");
                 },
-                child: new Icon(
+               /* child: new Icon(
                   Icons.check,
                   size: size.height/25,
                 ),
 
                 backgroundColor: Colors.pink,
-                foregroundColor: Colors.white,
+                foregroundColor: Colors.white,*/
               )
               ],
 
@@ -122,29 +131,38 @@ class Add_med extends StatelessWidget {
                 SizedBox(
                   height: size.height/20,
                 ),
-                FloatingActionButton(
+               // FloatingActionButton(
+                RaisedButton(
+                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15.0),
+                  color: Colors.lightBlueAccent,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Text(
+                    "sauvegarder",
+
+                  ),
                   onPressed: ()async{
                     if(insert_before==false){
                       // medicament le nom n'est pas  insiréé
-                      int res = await dbmanager.insertMedicament(new Medicament(
+                      id_med = await dbmanager.insertMedicament(new Medicament(
                           nom_med_ctrl.text,
                       ));
-                      print("id medicament $res");
+                      print("id medicament $id_med");
                       insert_before =true;
                     }
 
 
-                    await dbmanager.insertBilirubine(new Bilirubine(
+                  int id_bil=  await dbmanager.insertBilirubine(new Bilirubine(
                         bil_inf60_ctrl.text,bil_sup60_ctrl.text,id_med
                     ));
-
+                    print("bilir $id_bil et id med $id_med");
                   },
-                  child: new Icon(
+                  /*child: new Icon(
                     Icons.check,
                     size: size.height/25,
                   ),
                   backgroundColor: Colors.pink,
-                  foregroundColor: Colors.white,
+                  foregroundColor: Colors.white,*/
                 )
               ],
             ),
@@ -174,26 +192,37 @@ class Add_med extends StatelessWidget {
                 SizedBox(
                   height: size.height/20,
                 ),
-                FloatingActionButton(
+             //   FloatingActionButton(
+                RaisedButton(
+                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15.0),
+    color: Colors.lightBlueAccent,
+    shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(10)),
+    child: Text(
+    "sauvegarder",
+
+    ),
                   onPressed: ()async{
                     if(insert_before==false){
                       // medicament le nom n'est pas  insiréé
-                      int res = await dbmanager.insertMedicament(new Medicament(
+                      id_med = await dbmanager.insertMedicament(new Medicament(
+
                         nom_med_ctrl.text,
                       ));
-                      print("id medicament $res");
+                      print("id medicament $id_med");
                       insert_before =true;
                     }
-                    await dbmanager.insertTgo_tgpe(new Tgo_tgp(
+                  int id_tg = await dbmanager.insertTgo_tgpe(new Tgo_tgp(
                         tgo_inf55_ctrl.text,tgo_sup55_ctrl.text,id_med
                     ));
+                    print("tgo tgp $id_tg et id med $id_med");
                   },
-                  child: new Icon(
+          /*        child: new Icon(
                     Icons.check,
                     size: size.height/25,
                   ),
                   backgroundColor: Colors.pink,
-                  foregroundColor: Colors.white,
+                  foregroundColor: Colors.white,*/
                 )
               ],
             ),

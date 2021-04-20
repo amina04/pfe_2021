@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:pfe_2021/controller/adopt_poso_controller.dart';
 import 'package:pfe_2021/model/database.dart';
 import 'package:pfe_2021/model/model_medicament.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../main.dart';
 class adopt_poso extends StatefulWidget {
@@ -64,8 +66,14 @@ Padding(padding:const EdgeInsets.all(25.0),
     setState(() {
     selected_item = value;
     print(' selected item $selected_item');
+    });
+    med_search =
+    await dbmanager.chercherMed(selected_item);
 
-    });});}})),
+    med_clr = await dbmanager.getClairance(med_search.id_med);
+    med_bil = await dbmanager.getBilirubine(med_search.id_med);
+    med_tgo = await dbmanager.getTgo_tgp(med_search.id_med);
+    });}})),
 
            Padding(
              padding: const EdgeInsets.all(25.0),
@@ -95,6 +103,18 @@ Padding(padding:const EdgeInsets.all(25.0),
                ),),
            ),
            FloatingActionButton(
+             onPressed: (){
+               double clr=double.parse(clairance_cntrl.text);
+               if(clr<=30){
+                 String res = med_clr.inf_30;
+                 Alert(
+                     context: context,
+                     title: "Votre dose est",
+                     desc: "$res")
+                     .show();
+               }
+
+             },
              child: new Icon(
                Icons.check,
                size: 40,

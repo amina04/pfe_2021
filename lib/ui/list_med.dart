@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pfe_2021/model/database.dart';
 import 'package:pfe_2021/model/model_medicament.dart';
+import 'package:pfe_2021/ui/searching_details.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../main.dart';
@@ -49,7 +50,19 @@ class _List_medState extends State<List_med> {
                             desc: "vous devez le l'ajouter d'abord.")
                             .show();
                       } else {
+                        selected_id = med_search.id_med;
+                        print('id delectionne $selected_id');
 
+                        med_clr = await dbmanager.getClairance(selected_id);
+                        med_bil = await dbmanager.getBilirubine(selected_id);
+                        med_tgo = await dbmanager.getTgo_tgp(selected_id);
+                        //=========================
+                        med_search=null;
+                        print('exisit');
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>Searching_details()));
                       }
                     },
                     style: TextStyle(color: Colors.white, fontSize: 16.0),
