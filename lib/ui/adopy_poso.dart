@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pfe_2021/controller/adopt_poso_controller.dart';
+import 'package:pfe_2021/controller/functions.dart';
 import 'package:pfe_2021/model/database.dart';
 import 'package:pfe_2021/model/model_medicament.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
@@ -17,6 +18,11 @@ class _adopt_posoState extends State<adopt_poso> {
 
   @override
   List<DropdownMenuItem> getDropDownItem() {
+
+    //es val initiale de text field
+    clairance_cntrl.text='0';
+    bilurbine_cntrl.text='0';
+    tgo_cntrl.text='0';
     List<DropdownMenuItem<String>> dropdownitems = [];
     for (int i = 0; i < meds.length; i++) {
       //  extrait le nom de chaque objet comme dans list screen
@@ -32,6 +38,7 @@ class _adopt_posoState extends State<adopt_poso> {
   }
 
   Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.blue,
@@ -46,7 +53,7 @@ class _adopt_posoState extends State<adopt_poso> {
              padding: const EdgeInsets.all(25.0),
              child: TextField(
                decoration: InputDecoration(
-                 labelText: 'Poids',
+                 labelText: 'Le poids',
 //O
 
                ),),
@@ -78,8 +85,9 @@ Padding(padding:const EdgeInsets.all(25.0),
            Padding(
              padding: const EdgeInsets.all(25.0),
              child: TextField(
+               controller: clairance_cntrl,
                decoration: InputDecoration(
-                 labelText: 'Clairance',
+                 labelText: 'La clairance rénale',
 //O
 
                ),),
@@ -87,8 +95,9 @@ Padding(padding:const EdgeInsets.all(25.0),
            Padding(
              padding: const EdgeInsets.all(25.0),
              child: TextField(
+               controller: bilurbine_cntrl,
                decoration: InputDecoration(
-                 labelText: 'Bilirubine',
+                 labelText: 'La bilirubine',
 
 
                ),),
@@ -96,6 +105,7 @@ Padding(padding:const EdgeInsets.all(25.0),
            Padding(
              padding: const EdgeInsets.all(25.0),
              child: TextField(
+               controller: tgo_cntrl,
                decoration: InputDecoration(
                  labelText: 'Tgo/Tgp',
 
@@ -104,15 +114,52 @@ Padding(padding:const EdgeInsets.all(25.0),
            ),
            FloatingActionButton(
              onPressed: (){
-               double clr=double.parse(clairance_cntrl.text);
-               if(clr<=30){
-                 String res = med_clr.inf_30;
+
+               String c=resultat_clairance(med_clr,clairance_cntrl.text);
+               String b=resultat_bilirubine(med_bil,bilurbine_cntrl.text);
+               String t=resultat_tgo(med_tgo,tgo_cntrl.text);
+
                  Alert(
                      context: context,
-                     title: "Votre dose est",
-                     desc: "$res")
+                     content: Column(
+                       children: [
+                         SizedBox(
+                           height: size.height/50,
+
+                         ),
+                         Text('La clairance rénale',style: TextStyle(
+                           fontSize: size.width/22,color: Colors.grey.shade800,
+                         ),),
+                          Text('$c',style: TextStyle(
+                            fontSize: size.width/22,
+                          ),),
+                         SizedBox(
+                           height: size.height/50,
+                         ),
+                          Text('La bilrubine',style: TextStyle(
+                            fontSize: size.width/22,color: Colors.grey.shade800,
+                          ),),
+
+                          Text('$b',style:TextStyle(
+                            fontSize: size.width/22,
+                          ),),
+                         SizedBox(
+                           height: size.height/50,
+                         ),
+                         Text('Tgo/Tgp',style: TextStyle(
+                           fontSize: size.width/22,color: Colors.grey.shade800,
+                         ),),
+
+                          Text('$t',style:TextStyle(
+                            fontSize: size.width/22,
+                          ),),
+                       ],
+                     ),
+                     title: "Dose à administrer",
+
+                    )
                      .show();
-               }
+
 
              },
              child: new Icon(

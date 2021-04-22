@@ -18,7 +18,7 @@ class Add_med extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Text(
-          'Ajouter Medicament'
+          'Ajouter un médicament'
         ),
       ),
       body: ListView(
@@ -30,10 +30,11 @@ class Add_med extends StatelessWidget {
               //controller bah nhazo wach aw maktob f text field
               controller: nom_med_ctrl,
              decoration: InputDecoration(
-               labelText: 'nom médicament',
+               labelText: 'nom de médicament',
 
 
              ),
+
             ),
           ),
           Padding(
@@ -41,26 +42,29 @@ class Add_med extends StatelessWidget {
             child: Column(
               children: [
                 Center(
-                  child: Text('Clairance'),
+                  child: Text('La clairance rénale',style: TextStyle(
+                    fontSize: size.width/21,
+
+                  ),),
                 ),
     TextField(
                 controller:clr_inf30_ctrl,
     decoration: InputDecoration(
-    labelText: '<= 30',
+    labelText: '<= 30 ml/min',
 
 
     ),),
     TextField(
     controller:clr_sup60_ctrl,
     decoration: InputDecoration(
-    labelText: '>= 60',
+    labelText: '>= 60 ml/min',
 
 
     ),),
     TextField(
       controller:clr_entre_30_60_ctrl,
     decoration: InputDecoration(
-    labelText: 'entre 30 et 60',
+    labelText: 'entre 30 ml/min et 60 ml/min',
 
 
     ),),
@@ -75,7 +79,10 @@ class Add_med extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10)),
                   child: Text(
                     "sauvegarder",
-
+                    style: TextStyle(
+                        color: Colors.white,
+                      fontSize: size.width/24,
+                    ),
                   ),
                 onPressed: ()async{
 
@@ -92,15 +99,9 @@ class Add_med extends StatelessWidget {
                 int id_clr=  await dbmanager.insertClairance(new Clairance(
                     clr_inf30_ctrl.text,clr_sup60_ctrl.text,clr_entre_30_60_ctrl.text,id_med
                   ));
-                  print("clirance $id_clr et id med $id_med");
-                },
-               /* child: new Icon(
-                  Icons.check,
-                  size: size.height/25,
-                ),
 
-                backgroundColor: Colors.pink,
-                foregroundColor: Colors.white,*/
+                },
+
               )
               ],
 
@@ -112,19 +113,21 @@ class Add_med extends StatelessWidget {
             child: Column(
               children: [
                 Center(
-                  child: Text('Bilirubine'),
+                  child: Text('La bilirubine',
+    style: TextStyle(
+    fontSize: size.width/21)),
                 ),
                 TextField(
                   controller:bil_inf60_ctrl,
                   decoration: InputDecoration(
-                    labelText: '<= 60',
+                    labelText: '< 60 ml/min',
 
 
                   ),),
                 TextField(
                   controller:bil_sup60_ctrl,
                   decoration: InputDecoration(
-                    labelText: '>= 60',
+                    labelText: '>= 60 ml/min',
 
 
                   ),),
@@ -139,6 +142,10 @@ class Add_med extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10)),
                   child: Text(
                     "sauvegarder",
+                    style: TextStyle(
+                      color: Colors.white
+                          ,  fontSize: size.width/24,
+                    ),
 
                   ),
                   onPressed: ()async{
@@ -147,7 +154,7 @@ class Add_med extends StatelessWidget {
                       id_med = await dbmanager.insertMedicament(new Medicament(
                           nom_med_ctrl.text,
                       ));
-                      print("id medicament $id_med");
+
                       insert_before =true;
                     }
 
@@ -155,14 +162,9 @@ class Add_med extends StatelessWidget {
                   int id_bil=  await dbmanager.insertBilirubine(new Bilirubine(
                         bil_inf60_ctrl.text,bil_sup60_ctrl.text,id_med
                     ));
-                    print("bilir $id_bil et id med $id_med");
+
                   },
-                  /*child: new Icon(
-                    Icons.check,
-                    size: size.height/25,
-                  ),
-                  backgroundColor: Colors.pink,
-                  foregroundColor: Colors.white,*/
+
                 )
               ],
             ),
@@ -173,19 +175,20 @@ class Add_med extends StatelessWidget {
             child: Column(
               children: [
                 Center(
-                  child: Text('Tgo/Tgp'),
+                  child: Text('Tgo/Tgp'  ,style: TextStyle(
+    fontSize: size.width/21)),
                 ),
                 TextField(
                   controller:tgo_inf55_ctrl,
                   decoration: InputDecoration(
-                    labelText: '< 55',
+                    labelText: '< 55 ml/min',
 
 
                   ),),
                 TextField(
                   controller:tgo_sup55_ctrl,
                   decoration: InputDecoration(
-                    labelText: '>= 55',
+                    labelText: '>= 55 ml/min',
 
 
                   ),),
@@ -200,6 +203,11 @@ class Add_med extends StatelessWidget {
     borderRadius: BorderRadius.circular(10)),
     child: Text(
     "sauvegarder",
+      style: TextStyle(
+          color: Colors.white,
+        fontSize: size.width/24,
+      ),
+
 
     ),
                   onPressed: ()async{
@@ -209,20 +217,43 @@ class Add_med extends StatelessWidget {
 
                         nom_med_ctrl.text,
                       ));
-                      print("id medicament $id_med");
+
                       insert_before =true;
                     }
                   int id_tg = await dbmanager.insertTgo_tgpe(new Tgo_tgp(
                         tgo_inf55_ctrl.text,tgo_sup55_ctrl.text,id_med
                     ));
-                    print("tgo tgp $id_tg et id med $id_med");
+
                   },
-          /*        child: new Icon(
-                    Icons.check,
-                    size: size.height/25,
+                ),
+                SizedBox(
+                  height: size.height/20,
+                ),
+
+                RaisedButton(
+                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15.0),
+                  color: Colors.lightBlueAccent,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Text(
+                    "reset",
+                    style: TextStyle(
+                        color: Colors.white,
+                      fontSize: size.width/24,
+                    ),
                   ),
-                  backgroundColor: Colors.pink,
-                  foregroundColor: Colors.white,*/
+                  onPressed: (){
+                    //vider le contient de text fields
+                    nom_med_ctrl.clear();
+                    clr_inf30_ctrl.clear();
+                    clr_sup60_ctrl.clear();
+                    clr_entre_30_60_ctrl.clear();
+                    bil_inf60_ctrl.clear();
+                    bil_sup60_ctrl.clear();
+                    tgo_inf55_ctrl.clear();
+                    tgo_sup55_ctrl.clear();
+                  },
+
                 )
               ],
             ),
